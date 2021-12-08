@@ -34,7 +34,9 @@ function ConvertFrom-DataRow {
 
         [Parameter( Mandatory, ParameterSetName = 'AsObject' )]
         [switch]
-        $AsObject
+        $AsObject,
+
+        $DbNullValue = $null
     
     )
 
@@ -57,7 +59,15 @@ function ConvertFrom-DataRow {
             }
 
             $ReturnObject = [ordered]@{}
-            $Columns | ForEach-Object { $ReturnObject[$_] = $DataRow.$_ }
+            $Columns | ForEach-Object {
+                
+                if ( $DataRow.$_ -is [System.DBNull] ) {
+                    $ReturnObject[$_] = $DbNullValue
+                } else {
+                    $ReturnObject[$_] = $DataRow.$_
+                }
+            
+            }
 
             if ( $AsObject ) {
 
