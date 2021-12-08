@@ -12,7 +12,7 @@
 RootModule = 'ConvertFrom-DataRow.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.9'
+ModuleVersion = '0.9.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
