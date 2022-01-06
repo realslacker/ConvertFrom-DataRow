@@ -24,7 +24,7 @@ using namespace System.Collections.Generic
 function ConvertFrom-DataRow {
 
     [CmdletBinding( DefaultParameterSetName = 'AsHashtable' )]
-    [OutputType( [System.Collections.Specialized.OrderedDictionary], ParameterSetName = 'AsHashtable' )]
+    [OutputType( [hashtable], ParameterSetName = 'AsHashtable' )]
     [OutputType( [pscustomobject], ParameterSetName = 'AsObject' )]
     param(
     
@@ -58,7 +58,7 @@ function ConvertFrom-DataRow {
 
             }
 
-            $ReturnObject = [ordered]@{}
+            $ReturnObject = @{}
             $Columns | ForEach-Object {
                 
                 if ( $DataRow.$_ -is [System.DBNull] ) {
